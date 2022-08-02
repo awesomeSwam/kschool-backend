@@ -11,7 +11,7 @@ const mysql = require("../database/mysql");
 const queue = () => {
   setInterval(
     async () => {
-      console.log(new Date());
+      // console.log(new Date());
       await task();
     }, QUEUE_WAIT_MS
   );

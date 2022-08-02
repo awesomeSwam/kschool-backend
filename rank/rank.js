@@ -34,7 +34,7 @@ const rank = {
   main: () => {
     setInterval(
       async () => {
-        console.log(new Date());
+        // console.log(new Date());
         await updateRank();
       }, RANK_WAIT_MS
     );
