@@ -29,7 +29,7 @@ app.use("/leaderboard", leaderboardLimiter, leaderboardRouter);
 app.use("/pop", popLimiter, popRouter);
 
 // listen PORT
-const PORT = process.env.SERVER_PORT;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}!`);
 });
