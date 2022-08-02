@@ -4,13 +4,12 @@ const {
   REDIS_PORT, REDIS_HOST, REDIS_PASSWORD, CACHE_NAMESPACE_TOTAL, CACHE_NAMESPACE_SCHOOL,CACHE_NAMESPACE_POP, QUEUE_NAMESPACE_SCHOOL, QUEUE_NAMESPACE_POP
 } = process.env;
 
-console.log(REDIS_HOST)
 // Redis
 const redis = require("ioredis");
 const redisClient = redis.createClient({
-  port        : REDIS_PORT,
-  host        : REDIS_HOST,
-  password    : REDIS_PASSWORD,
+  port      : REDIS_PORT,
+  host      : REDIS_HOST,
+  password  : REDIS_PASSWORD,
 });
 
 redisClient.on("connect", () => {
