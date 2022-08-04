@@ -6,33 +6,33 @@ const {
 
 // Mysql
 const mysql = require('mysql');
-const mysqlClient = mysql.createPool({
-  host: MYSQL_HOST,
-  user: MYSQL_USER,
-  password: MYSQL_PASSWORD,
-  database: MYSQL_DATABASE,
-  port: MYSQL_PORT  
-});
+let mysqlClient;
 
-// const handleDisconnect = () => {
-//   mysqlClient = mysql.createConnection();
+const handleDisconnect = () => {
+  mysqlClient = mysql.createConnection({
+    host: MYSQL_HOST,
+    user: MYSQL_USER,
+    password: MYSQL_PASSWORD,
+    database: MYSQL_DATABASE,
+    port: MYSQL_PORT  
+  });
 
-//   mysqlClient.connect((err) => {
-//     if(err) {
-//       console.error(`error when mysql connect error\n>>> ${err}`);
-//       setTimeout(handleDisconnect, 2000);
-//     }
-//     console.log("mysqlClient connected!");
-//   });
+  mysqlClient.connect((err) => {
+    if(err) {
+      console.error(`error when mysql connect error\n>>> ${err}`);
+      setTimeout(handleDisconnect, 2000);
+    }
+    console.log("mysqlClient connected!");
+  });
 
-//   mysqlClient.on("error", (err) => {
-//     if(err.code === "PROTOCOL_CONNECTION_LOST")
-//       return handleDisconnect();
-//     console.error(err);
-//   });
-// }
+  mysqlClient.on("error", (err) => {
+    if(err.code === "PROTOCOL_CONNECTION_LOST")
+      return handleDisconnect();
+    console.error(err);
+  });
+}
 
-// handleDisconnect();
+handleDisconnect();
 
 
 // pop
