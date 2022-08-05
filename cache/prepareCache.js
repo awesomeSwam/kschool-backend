@@ -16,13 +16,13 @@ const prepareCache = async () => {
     redis.school.set(s.schoolCode, s, false);
   }
 
-  let popSum = 0;
+  let sumPop = 0;
   for (const p of popList) {
-    popSum += p.pop;
+    sumPop += p.pop;
     redis.pop.update(p.schoolCode, p.pop, false);
   }
 
-  redis.total.set(popSum);
+  redis.total.set(sumPop);
 }
 
 module.exports = prepareCache;
