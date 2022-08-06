@@ -56,7 +56,7 @@ const pop = {
       });
     });
   },
-  getIndex: async (schoolCode) => {
+  getRank: async (schoolCode) => {
     return await new Promise((resolve) => {
       redisClient.zrevrank(CACHE_NAMESPACE_POP, schoolCode, (err, data) => {
         if (err) console.error(`Redis pop getIndex error\n>>> ${err}`);
