@@ -13,6 +13,8 @@ const validateToken = (token, schoolCode) => {
       const verified = verifyToken(token);
       if (verified.schoolCode !== schoolCode)
         return { status: 403, data: { error: true, msg: "schoolCode is different" } };
+      if (new Date() <= verified.time)
+        return { status: 403, data: { error: true, msg: "wrong time" } };
       return true;
     } catch (err) {
       if (err.expiredAt)

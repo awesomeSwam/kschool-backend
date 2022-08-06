@@ -1,6 +1,6 @@
 // env
 require("dotenv").config();
-const MAX_POP = process.env.MAX_POP;
+const { MAX_POP, SIGN_AFTER_SECONDS } = process.env;
 
 // checkPopQuery
 const validateSchool = require("../validator/validateSchool");
@@ -9,6 +9,9 @@ const newToken = require("../validator/signNewToken");
 
 const checkPopQuery = async (req, res, next) => {
   const { schoolCode, count, token } = req.query;
+
+  const d = new Date();
+  d.setSeconds(d.getSeconds() + SIGN_AFTER_SECONDS);
 
   const T = validateToken(token, schoolCode);
   if (T !== true)
@@ -21,7 +24,7 @@ const checkPopQuery = async (req, res, next) => {
   const c = parseInt(count || 0);
   req.count = (0 < c && c <= MAX_POP && token) ? c : 0;
   req.schoolCode = schoolCode;
-  req.newToken = newToken(schoolCode);
+  req.newToken = newToken(schoolCode, d);
   
   return next();
 }

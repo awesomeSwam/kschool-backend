@@ -47,6 +47,22 @@ const pop = {
     }
     
     return d;
+  },
+  getScore: async (schoolCode) => {
+    return await new Promise((resolve) => {
+      redisClient.zscore(CACHE_NAMESPACE_POP, schoolCode, (err, data) => {
+        if (err) console.error(`Redis pop get error\n>>> ${err}`);
+        resolve (err ? -1 : data);
+      });
+    });
+  },
+  getIndex: async (schoolCode) => {
+    return await new Promise((resolve) => {
+      redisClient.zrank(CACHE_NAMESPACE_POP, schoolCode, (err, data) => {
+        if (err) console.error(`Redis pop getIndex error\n>>> ${err}`);
+        resolve(err ? -1 : data);
+      });
+    });
   }
 };
 
