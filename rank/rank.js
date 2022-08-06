@@ -16,12 +16,14 @@ const updateRank = async () => {
   }
   
   let rankTemp = [];
-  while (rankList.length > 0) {
+  const len = rankList.length / 2;
+  for (let i = 1; i <= len; i++) {
     const pop = rankList.pop();
     const schoolCode = rankList.pop();
     const rawSchoolData = await redis.school.get(schoolCode);
     const schoolData = JSON.parse(rawSchoolData);
     rankTemp.push( {
+      schoolRank: i,
       schoolName: (rawSchoolData === null) ? "null" : schoolData.schoolName,
       schoolCode: schoolCode, pop: pop
     });
