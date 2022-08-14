@@ -4,11 +4,12 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+// cors
+const { SITE_DOMAIN } = process.env;
 const corsOptions = {
   origin: SITE_DOMAIN,
   credentials: true
-}
-// cors
+};
 const cors = require("cors");
 
 // app settings
