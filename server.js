@@ -4,11 +4,15 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+const corsOptions = {
+  origin: SITE_DOMAIN,
+  credentials: true
+}
 // cors
 const cors = require("cors");
 
 // app settings
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ extended: true }));
 
