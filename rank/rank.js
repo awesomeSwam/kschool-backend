@@ -1,6 +1,6 @@
 // env
 const {
-  RANK_WAIT_MS
+  RANK_WAIT_MS, RANK_MAX
 } = process.env;
 
 // require
@@ -9,7 +9,7 @@ const redis = require("../database/redis");
 let rankData = [];
 
 const updateRank = async () => {
-  const rankList = await redis.rank.get();
+  const rankList = await redis.rank.get(RANK_MAX);
   if (rankList === null) {
     console.error("updating rank failed");
     return ;
