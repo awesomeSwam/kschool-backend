@@ -9,11 +9,12 @@ const newToken = require("../validator/signNewToken");
 
 const checkPopQuery = async (req, res, next) => {
   const { schoolCode, count, token } = req.query;
+  const ip = req.ipInfo;
 
   const d = new Date();
   d.setSeconds(d.getSeconds() + SIGN_AFTER_SECONDS);
 
-  const T = validateToken(token, schoolCode);
+  const T = validateToken(token, schoolCode, ip);
   if (T !== true)
     return res.status(T.status).json(T.data);
   
@@ -24,7 +25,7 @@ const checkPopQuery = async (req, res, next) => {
   const c = parseInt(count || 0);
   req.count = (0 < c && c <= MAX_POP && token) ? c : 0;
   req.schoolCode = schoolCode;
-  req.newToken = newToken(schoolCode, d);
+  req.newToken = newToken(schoolCode, d, ip);
   
   return next();
 }

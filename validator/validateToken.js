@@ -7,11 +7,11 @@ const jwt = require("jsonwebtoken");
 
 const verifyToken = (token) => jwt.verify(token, JWT_TOKEN_SECRET);
 
-const validateToken = (token, schoolCode) => {
+const validateToken = (token, schoolCode, ip) => {
   if (token) {
     try {
       const verified = verifyToken(token);
-      if (verified.schoolCode !== schoolCode)
+      if (verified.schoolCode !== schoolCode || verified.ip !== ip)
         return { status: 403, data: { error: true, msg: "schoolCode is different" } };
       if (new Date() <= verified.time)
         return { status: 403, data: { error: true, msg: "wrong time" } };

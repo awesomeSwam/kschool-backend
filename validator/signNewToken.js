@@ -6,6 +6,6 @@ const JWT_OPTION = { expiresIn: JWT_EXP };
 // signNewToken
 const jwt = require("jsonwebtoken");
 
-const signNewToken = (schoolCode, time) => jwt.sign({ schoolCode, time }, JWT_TOKEN_SECRET, JWT_OPTION);
+const signNewToken = (schoolCode, time, ip) => jwt.sign({ schoolCode, time, ip }, JWT_TOKEN_SECRET, JWT_OPTION);
 
 module.exports = signNewToken;

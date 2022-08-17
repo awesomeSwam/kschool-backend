@@ -5,14 +5,18 @@ const express = require("express");
 const app = express();
 
 // cors
+const cors = require("cors");
 const { SITE_DOMAIN } = process.env;
 const corsOptions = {
   origin: SITE_DOMAIN,
   credentials: true
 };
-const cors = require("cors");
+
+// express-ip
+const expressip = require("expres-ip");
 
 // app settings
+app.use(expressip().getIpInfoMiddleware());
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ extended: true }));
