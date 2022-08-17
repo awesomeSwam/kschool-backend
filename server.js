@@ -13,7 +13,7 @@ const corsOptions = {
 };
 
 // express-ip
-const expressip = require("expres-ip");
+const expressip = require("express-ip");
 
 // app settings
 app.use(expressip().getIpInfoMiddleware());
