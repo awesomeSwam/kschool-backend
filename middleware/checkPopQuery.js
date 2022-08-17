@@ -9,7 +9,7 @@ const newToken = require("../validator/signNewToken");
 
 const checkPopQuery = async (req, res, next) => {
   const { schoolCode, count, token } = req.query;
-  const ip = req.ipInfo;
+  const ip = req.ip;
 
   const d = new Date();
   d.setSeconds(d.getSeconds() + SIGN_AFTER_SECONDS);
