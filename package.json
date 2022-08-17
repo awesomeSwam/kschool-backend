@@ -15,7 +15,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "express-ip": "^1.0.4",
     "express-rate-limit": "^6.5.1",
     "ioredis": "^5.2.2",
     "jsonwebtoken": "^8.5.1",
