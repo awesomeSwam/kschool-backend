@@ -30,11 +30,18 @@ const leaderboardLimiter = rateLimit({
   max: LEADERBOARD_LIMITER_MAX
 });
 
+const schoolLimiter = rateLimit({
+  windowMs: SCHOOL_LIMITER_WINDOWMS,
+  max: SCHOOL_LIMITER_MAX
+})
 
 // Routers
 const leaderboardRouter = require("./router/leaderboard");
+const schoolRouter = require("./router/school");
 const popRouter = require("./router/pop");
+
 app.use("/leaderboard", leaderboardLimiter, leaderboardRouter);
+app.use("/school", schoolLimiter, schoolRouter );
 app.use("/pop", popLimiter, popRouter);
 
 // listen PORT
@@ -43,10 +50,10 @@ app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on ${PORT}!`);
 });
 
-
 const prepareCache = require("./cache/prepareCache");
 const queue = require("./queue/queue");
 const rank = require("./rank/rank");
+
 prepareCache().then(() => {
   queue();
   rank.main();
