@@ -18,6 +18,7 @@ const handleDisconnect = () => {
   });
 
   mysqlClient.connect((err) => {
+    console.log(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_PORT);
     if(err) {
       console.error(`error when mysql connect error\n>>> ${err}`);
       setTimeout(handleDisconnect, 2000);
