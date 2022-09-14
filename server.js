@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // limiter
 const rateLimit = require("express-rate-limit");
-const { POP_LIMITER_WINDOWMS, POP_LIMITER_MAX, LEADERBOARD_LIMITER_WINDOWMS, LEADERBOARD_LIMITER_MAX } = process.env;
+const { POP_LIMITER_WINDOWMS, POP_LIMITER_MAX, LEADERBOARD_LIMITER_WINDOWMS, LEADERBOARD_LIMITER_MAX, SCHOOL_LIMITER_WINDOWMS, SCHOOL_LIMITER_MAX } = process.env;
 const popLimiter = rateLimit({
   windowMs: POP_LIMITER_WINDOWMS,
   max: POP_LIMITER_MAX
