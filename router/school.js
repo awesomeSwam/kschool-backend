@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   schoolName ||= "";
 
   try {
-    const URL = encodeURI(`https://open.neis.go.kr/hub/schoolInfo?Type=json&pIndex=1&pSize=${INDEX_MAX}&KEY=${KEY}&ATPT_OFCDC_SC_CODE=${cityProvince}&SCHUL_NM=${schoolName}`);
+    const URL = encodeURI(`https://open.neis.go.kr/hub/schoolInfo?Type=json&pIndex=1&pSize=${INDEX_MAX}&KEY=${KEY}&SCHUL_NM=${schoolName}`);
     const { data } = await axios.get(URL);
     
     res.status(200).json({ data });
