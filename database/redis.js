@@ -89,7 +89,7 @@ const school = {
   },
   length: async () => {
     return await new Promise((resolve) => {
-      redisClient.zlen(CACHE_NAMESPACE_POP, (err, data) => {
+      redisClient.zcard(CACHE_NAMESPACE_POP, (err, data) => {
         if (err) console.error(`Redis school total error\n>>> ${err}`);
         resolve(err ? null : data);
       });
