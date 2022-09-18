@@ -86,6 +86,14 @@ const school = {
       if (push)
         queue.push(QUEUE_NAMESPACE_SCHOOL, schoolJSON);
     });
+  },
+  length: async () => {
+    return await new Promise((resolve) => {
+      redisClient.zlen(CACHE_NAMESPACE_POP, (err, data) => {
+        if (err) console.error(`Redis school total error\n>>> ${err}`);
+        resolve(err ? null : data);
+      });
+    })
   }
 };
 
