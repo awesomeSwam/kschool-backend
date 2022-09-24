@@ -19,7 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 
 // limiter
 const rateLimit = require("express-rate-limit");
-const { POP_LIMITER_WINDOWMS, POP_LIMITER_MAX, LEADERBOARD_LIMITER_WINDOWMS, LEADERBOARD_LIMITER_MAX, SCHOOL_LIMITER_WINDOWMS, SCHOOL_LIMITER_MAX } = process.env;
+const {
+  FIRST_LIMITER_WINDOWMS, FIRST_LIMITER_MAX, POP_LIMITER_WINDOWMS, POP_LIMITER_MAX,
+  LEADERBOARD_LIMITER_WINDOWMS, LEADERBOARD_LIMITER_MAX, SCHOOL_LIMITER_WINDOWMS, SCHOOL_LIMITER_MAX
+} = process.env;
+
+const firstLimiter = rateLimit({
+  windowMs: FIRST_LIMITER_WINDOWMS,
+  max: FIRST_LIMITER_MAX
+});
+
 const popLimiter = rateLimit({
   windowMs: POP_LIMITER_WINDOWMS,
   max: POP_LIMITER_MAX
@@ -36,10 +45,12 @@ const schoolLimiter = rateLimit({
 })
 
 // Routers
+const firstRouter = require("./router/first");
 const leaderboardRouter = require("./router/leaderboard");
 const schoolRouter = require("./router/school");
 const popRouter = require("./router/pop");
 
+app.use("/first", firstLimiter, firstRouter);
 app.use("/leaderboard", leaderboardLimiter, leaderboardRouter);
 app.use("/school", schoolLimiter, schoolRouter );
 app.use("/pop", popLimiter, popRouter);
