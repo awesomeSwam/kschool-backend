@@ -5,7 +5,7 @@ const redis = require("../database/redis");
 // Router
 const express = require("express");
 const router = express.Router();
-router.post("/", checkSchoolQuery, async (req, res) => {
+router.get("/", checkSchoolQuery, async (req, res) => {
   const { schoolCode } = req;
 
   const total = await redis.total.get();
