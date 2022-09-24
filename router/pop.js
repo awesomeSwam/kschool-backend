@@ -19,7 +19,7 @@ router.post("/", checkPopQuery, async (req, res) => {
     pop: (p) ? p : await redis.pop.getScore(schoolCode)
   };
 
-  res.status(200).json(resObj);
+  res.status(201).json(resObj);
 });
 
 module.exports = router;

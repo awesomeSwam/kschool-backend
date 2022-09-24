@@ -18,7 +18,7 @@ router.get("/", checkSchoolQuery, async (req, res) => {
     pop: p
   };
 
-  res.status(201).json(resObj);
+  res.status(200).json(resObj);
 });
 
 module.exports = router;
