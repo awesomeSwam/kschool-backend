@@ -13,7 +13,6 @@ router.get("/", checkSchoolQuery, async (req, res) => {
   const p = await redis.pop.getScore(schoolCode);
   
   const resObj = {
-    token: newToken,
     total: total,
     rank: rank,
     pop: p
