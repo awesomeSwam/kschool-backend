@@ -29,8 +29,8 @@ const updateRank = async () => {
   let rankTemp = [];
   const len = rankList.length / 2;
   for (let i = 1; i <= len; i++) {
-    const pop = rankList.pop();
     const schoolCode = rankList.pop();
+    const pop = rankList.pop();
     const rawSchoolData = await redis.school.get(schoolCode);
     const schoolData = JSON.parse(rawSchoolData);
     rankTemp.push( {
@@ -39,7 +39,7 @@ const updateRank = async () => {
       schoolCode: schoolCode, pop: pop
     });
   }
-  rankData = rankTemp.reverse();
+  rankData = rankTemp;
 }
 
 const rank = {

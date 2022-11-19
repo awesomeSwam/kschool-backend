@@ -160,7 +160,7 @@ const rank = {
     return await new Promise((resolve) => {
       redisClient.zrevrange(CACHE_NAMESPACE_POP, 0, idx, "withscores", (err, data) => {
         if (err) console.error(`Redis getLeaderboard error\n>>> ${err}`);
-        resolve(err ? null : data);
+        resolve(err ? null : data.reverse());
       })
     });
   } 
