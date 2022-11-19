@@ -39,7 +39,7 @@ const updateRank = async () => {
       schoolCode: schoolCode, pop: pop
     });
   }
-  rankData = rankTemp;
+  rankData = rankTemp.reverse();
 }
 
 const rank = {
