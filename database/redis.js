@@ -158,7 +158,7 @@ const total = {
 const rank = {
   get: async (idx) => {
     return await new Promise((resolve) => {
-      redisClient.zrange(CACHE_NAMESPACE_POP, 0, idx, "withscores", (err, data) => {
+      redisClient.zrevrange(CACHE_NAMESPACE_POP, 0, idx, "withscores", (err, data) => {
         if (err) console.error(`Redis getLeaderboard error\n>>> ${err}`);
         resolve(err ? null : data);
       })
