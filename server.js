@@ -50,10 +50,15 @@ const leaderboardRouter = require("./router/leaderboard");
 const schoolRouter = require("./router/school");
 const popRouter = require("./router/pop");
 
-app.use("/first", firstLimiter, firstRouter);
-app.use("/leaderboard", leaderboardLimiter, leaderboardRouter);
-app.use("/school", schoolLimiter, schoolRouter );
-app.use("/pop", popLimiter, popRouter);
+// app.use("/first", firstLimiter, firstRouter);
+// app.use("/leaderboard", leaderboardLimiter, leaderboardRouter);
+// app.use("/school", schoolLimiter, schoolRouter );
+// app.use("/pop", popLimiter, popRouter);
+
+app.use("/first", firstRouter);
+app.use("/leaderboard", leaderboardRouter);
+app.use("/school", schoolRouter );
+app.use("/pop", popRouter);
 
 // listen PORT
 const PORT = process.env.PORT;
