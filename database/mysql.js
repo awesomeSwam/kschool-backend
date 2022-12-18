@@ -39,14 +39,14 @@ handleDisconnect();
 const pop = {
   getAll: async () => {
     return await new Promise((resolve) => {
-      mysqlClient.query("SELECT * FROM EVENT_POP", (err, rows, fields) => {
+      mysqlClient.query("SELECT * FROM POP", (err, rows, fields) => {
         if (err) console.error(`Mysql pop getAll error\n>>> ${err}`);
         resolve(err ? null : rows);
       });
     });
   },
   update: async (schoolCode, count) => {
-    const sql = "INSERT INTO `EVENT_POP`(`schoolCode`, `pop`) VALUES(?, ?) ON DUPLICATE KEY UPDATE `pop` = `pop` + ?";
+    const sql = "INSERT INTO `POP`(`schoolCode`, `pop`) VALUES(?, ?) ON DUPLICATE KEY UPDATE `pop` = `pop` + ?";
     const param = [schoolCode, count, count];
   
     mysqlClient.query(sql, param, (err, rows, fields) => {
@@ -60,14 +60,14 @@ const pop = {
 const school = {
   getAll: async () => {
     return await new Promise((resolve) => {
-      mysqlClient.query("SELECT * FROM EVENT_SCHOOL", (err, rows, fields) => {
+      mysqlClient.query("SELECT * FROM SCHOOL", (err, rows, fields) => {
         if (err) console.error(`Mysql school get error\n>>> ${err}`);
         resolve(err ? null : rows);
       });
     });
   },
   update: async (schoolData) => {
-    const sql = "INSERT IGNORE INTO `EVENT_SCHOOL` (`schoolName`, `schoolCode`, `cityProvince`, `address`) VALUES (?, ?, ?, ?)";
+    const sql = "INSERT IGNORE INTO `SCHOOL` (`schoolName`, `schoolCode`, `cityProvince`, `address`) VALUES (?, ?, ?, ?)";
     const param = [schoolData.schoolName, schoolData.schoolCode, schoolData.cityProvince, schoolData.address];
     mysqlClient.query(sql, param, (err, rows, fields) => {
       if (err) console.error(`Mysql updateSchool error\n>>> ${err}`);
