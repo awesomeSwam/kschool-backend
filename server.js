@@ -7,7 +7,7 @@ const app = express();
 
 // cors
 const cors = require("cors");
-const { SITE_DOMAIN } = process.env;
+const { SITE_DOMAIN, POP_LIMITER_WINDOWMS, POP_LIMITER_MAX } = process.env;
 const corsOptions = {
   origin: SITE_DOMAIN,
   credentials: true
