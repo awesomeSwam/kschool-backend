@@ -29,10 +29,10 @@ app.use(express.urlencoded({ extended: true }));
 //   max: FIRST_LIMITER_MAX
 // });
 
-// const popLimiter = rateLimit({
-//   windowMs: POP_LIMITER_WINDOWMS,
-//   max: POP_LIMITER_MAX
-// });
+const popLimiter = rateLimit({
+  windowMs: POP_LIMITER_WINDOWMS,
+  max: POP_LIMITER_MAX
+});
 
 // const leaderboardLimiter = rateLimit({
 //   windowMs: LEADERBOARD_LIMITER_WINDOWMS,
@@ -53,7 +53,7 @@ const popRouter = require("./router/pop");
 // app.use("/first", firstLimiter, firstRouter);
 // app.use("/leaderboard", leaderboardLimiter, leaderboardRouter);
 // app.use("/school", schoolLimiter, schoolRouter );
-// app.use("/pop", popLimiter, popRouter);
+app.use("/pop", popLimiter, popRouter);
 
 app.use("/first", firstRouter);
 app.use("/leaderboard", leaderboardRouter);
