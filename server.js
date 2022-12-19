@@ -54,12 +54,12 @@ const popRouter = require("./router/pop");
 // app.use("/first", firstLimiter, firstRouter);
 // app.use("/leaderboard", leaderboardLimiter, leaderboardRouter);
 // app.use("/school", schoolLimiter, schoolRouter );
-app.use("/pop", rateLimiter({ POP_LIMITER_WINDOWMS, POP_LIMITER_MAX }), popRouter);
+// app.use("/pop", , popRouter);
 
 app.use("/first", firstRouter);
 app.use("/leaderboard", leaderboardRouter);
 app.use("/school", schoolRouter );
-app.use("/pop", popRouter);
+app.use("/pop", rateLimiter({ POP_LIMITER_WINDOWMS, POP_LIMITER_MAX }), popRouter);
 
 // listen PORT
 const PORT = process.env.PORT;
