@@ -1,5 +1,5 @@
 require("dotenv").config();
-const rateLimit = require("express-rate-limit");
+const rateLimiter = require("./middleware/rateLimiter.js");
 
 // express
 const express = require("express");
@@ -30,10 +30,10 @@ app.use(express.urlencoded({ extended: true }));
 //   max: FIRST_LIMITER_MAX
 // });
 
-const popLimiter = rateLimit({
-  windowMs: POP_LIMITER_WINDOWMS,
-  max: POP_LIMITER_MAX
-});
+// const popLimiter = rateLimit({
+//   windowMs: POP_LIMITER_WINDOWMS,
+//   max: POP_LIMITER_MAX
+// });
 
 // const leaderboardLimiter = rateLimit({
 //   windowMs: LEADERBOARD_LIMITER_WINDOWMS,
@@ -54,7 +54,7 @@ const popRouter = require("./router/pop");
 // app.use("/first", firstLimiter, firstRouter);
 // app.use("/leaderboard", leaderboardLimiter, leaderboardRouter);
 // app.use("/school", schoolLimiter, schoolRouter );
-app.use("/pop", popLimiter, popRouter);
+app.use("/pop", rateLimiter({ POP_LIMITER_WINDOWMS, POP_LIMITER_MAX }), popRouter);
 
 app.use("/first", firstRouter);
 app.use("/leaderboard", leaderboardRouter);
@@ -63,7 +63,11 @@ app.use("/pop", popRouter);
 
 // listen PORT
 const PORT = process.env.PORT;
-app.listen(PORT, "0.0.0.0", () => {
+// app.listen(PORT, "0.0.0.0", () => {
+//   console.log(`Server is running on ${PORT}!`);
+// });
+
+app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}!`);
 });
 
