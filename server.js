@@ -59,7 +59,7 @@ const popRouter = require("./router/pop");
 app.use("/first", firstRouter);
 app.use("/leaderboard", leaderboardRouter);
 app.use("/school", schoolRouter);
-app.use("/pop", popRouter);
+// app.use("/pop", popRouter);
 app.use("/pop", rateLimiter( POP_LIMITER_WINDOWMS, POP_LIMITER_MAX ), popRouter);
 
 // app.use("/test", rateLimiter(5, 1), (req, res) => {
