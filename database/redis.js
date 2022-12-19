@@ -166,6 +166,26 @@ const rank = {
   } 
 }
 
+const ip = {
+  incr: async (ip) => {
+    return await new Promise((resolve) => {
+      redisClient.incr(ip, (err, data) => {
+        if (err) console.error(`Redis ip incr error\n>>> ${err}`);
+        resolve(err ? null : data);
+      });
+    });
+  },
+  
+  expire: async (ip, ms) => {
+    return await new Promise((resolve) => {
+      redisClient.expire(ip, ms, (err, data) => {
+        if (err) console.error(`Redis expire\n>>>${err}`);
+        resolve(err ? null : data);
+      });
+    });
+  }
+}
+
 
 const flush = {
   all: async () => {
@@ -175,7 +195,7 @@ const flush = {
 
 
 const _redis = {
-  pop, school, queue, total, flush, rank
+  pop, school, queue, total, flush, rank, ip
 };
 
 module.exports = _redis;
