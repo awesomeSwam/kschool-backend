@@ -6,7 +6,7 @@ const redis = require("../database/redis");
 const rateLimiter = ({ secondsWindow, allowedHits }) => {
   return async function (req, res, next) {
     const ip = `IP_${req.ip}`;
-    console.log(ip);
+    
     const requests = await redis.ip.incr(ip);
 
     if (requests === null) {
@@ -18,6 +18,8 @@ const rateLimiter = ({ secondsWindow, allowedHits }) => {
     if (requests <= allowedHits) {
       return next();
     }
+
+    console.log(ip, requests);
     
     return res.status(429).json({ error: true, msg: "429 Too many requests" });
   }
