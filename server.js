@@ -63,13 +63,13 @@ app.use("/pop", popRouter);
 
 // listen PORT
 const PORT = process.env.PORT;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server is running on ${PORT}!`);
-});
-
-// app.listen(PORT, () => {
+// app.listen(PORT, "0.0.0.0", () => {
 //   console.log(`Server is running on ${PORT}!`);
 // });
+
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}!`);
+});
 
 const prepareCache = require("./cache/prepareCache");
 const queue = require("./queue/queue");
