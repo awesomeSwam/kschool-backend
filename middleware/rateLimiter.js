@@ -5,7 +5,8 @@ const redis = require("../database/redis");
 
 const rateLimiter = (secondsWindow, allowedHits) => {
   return async function (req, res, next) {
-    const ip = `IP_${req.ip}`;
+    const myIp = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
+    const ip = `IP_${myIp}`;
     
     const requests = await redis.ip.incr(ip);
 
