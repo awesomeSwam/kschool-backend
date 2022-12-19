@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const redis = require("../database/redis");
 
-const rateLimiter = ({ secondsWindow, allowedHits }) => {
+const rateLimiter = (secondsWindow, allowedHits) => {
   return async function (req, res, next) {
     const ip = `IP_${req.ip}`;
     
