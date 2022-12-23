@@ -17,7 +17,6 @@ const rateLimiter = (secondsWindow, allowedHits) => {
     if (requests === 1) redis.ip.expire(ip, secondsWindow);
 
     if (requests <= allowedHits) {
-      console.log(ip, requests);
       return next();
     }
     
